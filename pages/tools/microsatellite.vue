@@ -49,13 +49,15 @@
                                 </b-form-group>
                             </b-col>
                         </b-row>
-                    <b-button variant="secondary" size="sm" @click="run_perf" class="mb-2">Run PERF</b-button>
+                    <b-button variant="secondary" size="sm" @click="run_perf" class="my-3">Run PERF</b-button>
                     <b-alert :show="dismissCountDown" dismissible :variant="mensaje.color" @dismissed="dismissCountDown=0" @dismiss-count-down="countDownChanged">
                         {{mensaje.text}}
                     </b-alert>
                     <hr>
                     <b-card header="Result" :header-bg-variant="status" header-text-variant="white"  v-if="show_result">
-                        <b-card-text>
+
+                        {{result}}
+                        <!-- <b-card-text>
                             <b-button variant="info" @click="download_file(report,'report_perf.tsv' )" >Download table</b-button>
                             <b-button variant="info" @click="download_file(html, 'report_perf.html')" >Download Full Report</b-button>
                             <hr>
@@ -72,7 +74,7 @@
                                 :per-page="perPage"
                                 aria-controls="my-table"
                             ></b-pagination>
-                        </b-card-text>
+                        </b-card-text> -->
                     </b-card>
                 </b-card-text>
             </b-card>
@@ -131,12 +133,17 @@
             async run_perf(){
                 if(this.input.seq == null && this.input.file == null){
                     this.mensaje.color = 'danger'
-                    this.mensaje.text = 'Faltan secuencias que analisar'
+                    this.mensaje.text = 'Faltan secuencias que analizar'
                     this.showAlert()
                 }else{
                     try {
                         this.show = true
                         this.show_result = false
+                        /* let res = await this.$axios.post('/biotools/perf', this.input)
+                        console.log(res.data)
+                        this.show = false
+                        this.show_result = true */
+
                         if(this.input.file != null){
                             let formData = new FormData;
                             formData.append('file',this.input.file)
@@ -147,26 +154,27 @@
                             formData.append('penta',this.input.penta)
                             formData.append('hexa',this.input.hexa)
 
-                            let res = await this.$axios.post('/tools/ssr', formData)
+                            let res = await this.$axios.post('/biotools/perf', formData)
                             this.show = false
                             this.show_result = true
                             this.status = res.data.status
-                            this.result = res.data.report
+                           /*  this.result = res.data.report
                             this.report = res.data.tsv
-                            this.html = res.data.html
+                            this.html = res.data.html */
                             this.clear()
                             console.log(res.data)
                         }else{
-                            let res = await this.$axios.post('/tools/ssr', this.input)
-                            console.log(res.data)
+                            let res = await this.$axios.post('/biotools/perf', this.input)
                             this.show = false
                             this.show_result = true
                             this.status = res.data.status
-                            this.result = res.data.report
+
+                            this.result = res.data.result
+                            /* this.result = res.data.report
                             this.report = res.data.tsv
-                            this.html = res.data.html
+                            this.html = res.data.html */
                             this.clear()
-                        }                 
+                        }             
                     } catch (error) {
                         console.log(error)
                     }

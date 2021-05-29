@@ -27,13 +27,6 @@
             
         <b-card border-variant="light" header="RESULTADOS" :header-bg-variant="status" header-text-variant="white" v-if="show">
             <b-card-text>
-
-                    <!-- <b-pagination
-                        v-model="currentPage"
-                        :total-rows="rows"
-                        :per-page="perPage"
-                        aria-controls="my-table"
-                    ></b-pagination> -->
                     <b-table-simple id="my-table" hover small caption-top responsive>
                         <caption>{{message}} in database INIA, grouped by text: {{buscar}}</caption>
                         <b-thead head-variant="dark">
