@@ -7,18 +7,16 @@
             <b-card-text class="mb-3">
                 <p>This script searches nucleotide sequences using a set of primer sequences and attempts to anticipate the results of a PCR reaction using these same sequences. Results are based on sequence identity. Real-world factors such as melting temperature, annealing time, salt concentration, or secondary structure are not accounted for in this script.</p>
                 <b-row>
-                    <b-col md="2" sm="6">
+                    <b-col md="4" sm="6">
                         <b-form-group
                             label="Organism"
                             label-for="organism"
                         >
                             <b-form-select id= "organism" v-model="input.seq">
-                                <b-form-select-option :value="null" >Please select an Genome</b-form-select-option>
-                                <b-form-select-option v-for="item in syringae" :key="item._id" :value="`${item.code}`">{{item.code}}</b-form-select-option>
+                                <b-form-select-option :value="null" >Select a genome</b-form-select-option>
+                                <b-form-select-option v-for="item in syringae" :key="item._id" :value="`${item.code}`">{{item.code}} {{item.specie.scientific_name}}</b-form-select-option>
                             </b-form-select>
                         </b-form-group>
-                    </b-col>
-                    <b-col md="2" sm="6">
                         <b-form-group
                             label="Target"
                             label-for="target"   
@@ -69,8 +67,7 @@
         <hr>
         <div class="resultados">
 
-            {{input}}
-            <!-- <b-card
+             <b-card
                 border-variant="light"
                 header="Result"
                 header-bg-variant="success"
@@ -79,15 +76,15 @@
             >
                 <b-card-text>
                     <b-row>
-                        <b-col>
+                        <b-col md=4>
                             <b-table striped hover :items="resultado_pcr"></b-table>
                         </b-col>
-                        <b-col>
+                        <b-col md=8>
                             <textarea class="form-control" rows="10" v-model="resultado_amplicon"></textarea>
                         </b-col>
                     </b-row>
                 </b-card-text>
-            </b-card> -->
+            </b-card>
         </div>     
     </div>
 </template>
@@ -108,7 +105,7 @@
 
                 },
                 options: [
-                    { value: '_genomic.fna', text: 'Draft genome assembly' },
+                    { value: '_genomic.fna', text: 'Draft genome' },
                     { value: '_rna_from_genomic.ffn', text: 'Genes' }
                 ],
                 genomas: [],
@@ -133,13 +130,15 @@
             
             async in_silico_pcr(){
                 try {
-                    this.show = true
-                    let res = await this.$axios.post('/biotools/in_silico_pcr/', this.input)
-                    console.log(res.data)
-                    /* this.resultado_pcr = res.data.result
-                    this.resultado_amplicon = res.data.amplicons */
-                    this.show_result = true
-                    this.show = false
+                    if(this.input.seq != null){
+                        this.show = true
+                        let res = await this.$axios.post('/biotools/in_silico_pcr/', this.input)
+                        this.resultado_pcr = res.data.result.pcr_stats
+                        this.resultado_amplicon = res.data.result.amplicon
+                        this.show_result = true
+                        this.show = false
+                    }
+                   
                 } catch (error) {
                     console.log(error)
                 }

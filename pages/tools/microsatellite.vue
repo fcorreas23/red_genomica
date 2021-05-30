@@ -12,38 +12,33 @@
                         </b-card-text>
                     </b-card>
 
-                    <b-form-group label="Enter one or more queries the text box or use the browse button to upload a file from your local disk. The file may contain a single sequence or a list of sequences. In both cases, the data must be in FASTA format.">
-                        <b-form-textarea rows="8" v-model="input.seq" style="font-size: 10pt"></b-form-textarea>
+                    <b-form-group label="Use the browse button to upload a file from your local disk. The file may contain a single sequence or a list of sequences. The data must be in FASTA format.">
+                        <!-- <b-form-textarea rows="8" v-model="input.seq" style="font-size: 10pt"></b-form-textarea> -->
                         <b-form-file v-model="input.file" accept=".fasta, .fna, .fnn, .fa" class="mt-1 mb-3" plain></b-form-file>
                     </b-form-group>                    
                     <p>Minimum number of repeating units to be considered.</p>
                     <b-row>
-                            <b-col sm="3" md= "2" lg="2">
-                                <b-form-group  label="Mono">
-                                    <b-form-spinbutton v-model="input.mono" min="12" max="20" size="sm"></b-form-spinbutton>
-                                </b-form-group>
-                            </b-col>
-                            <b-col sm="3" md= "2" lg="2">
+                            <b-col sm="4" md= "2" lg="2">
                                 <b-form-group  label="Di">
                                     <b-form-spinbutton v-model="input.di" min="6" max="20" size="sm"></b-form-spinbutton>
                                 </b-form-group>
                             </b-col>
-                            <b-col sm="3" md= "2" lg="2">
+                            <b-col sm="4" md= "2" lg="2">
                                 <b-form-group  label="Tri">
                                     <b-form-spinbutton v-model="input.tri" min="4" max="20" size="sm"></b-form-spinbutton>
                                 </b-form-group>
                             </b-col>
-                            <b-col sm="3" md= "2" lg="2">
+                            <b-col sm="4" md= "2" lg="2">
                                 <b-form-group  label="Tetra">
                                     <b-form-spinbutton v-model="input.tetra" min="3" max="20" size="sm"></b-form-spinbutton>
                                 </b-form-group>
                             </b-col>
-                            <b-col sm="3" md= "2" lg="2">
+                            <b-col sm="4" md= "2" lg="2">
                                 <b-form-group  label="Penta">
                                     <b-form-spinbutton v-model="input.penta" min="2" max="20" size="sm"></b-form-spinbutton>
                                 </b-form-group>
                             </b-col>
-                            <b-col sm="3" md= "2" lg="2">
+                            <b-col sm="4" md= "2" lg="2">
                                 <b-form-group  label="Hexa">
                                     <b-form-spinbutton v-model="input.hexa" min="2" max="20" size="sm"></b-form-spinbutton>
                                 </b-form-group>
@@ -56,8 +51,7 @@
                     <hr>
                     <b-card header="Result" :header-bg-variant="status" header-text-variant="white"  v-if="show_result">
 
-                        {{result}}
-                        <!-- <b-card-text>
+                        <b-card-text>
                             <b-button variant="info" @click="download_file(report,'report_perf.tsv' )" >Download table</b-button>
                             <b-button variant="info" @click="download_file(html, 'report_perf.html')" >Download Full Report</b-button>
                             <hr>
@@ -74,7 +68,7 @@
                                 :per-page="perPage"
                                 aria-controls="my-table"
                             ></b-pagination>
-                        </b-card-text> -->
+                        </b-card-text>
                     </b-card>
                 </b-card-text>
             </b-card>
@@ -99,9 +93,7 @@
                 show:false,
                 show_result: false,
                 input:{
-                    seq : null,
                     file: null,
-                    mono: 12,
                     di: 6,
                     tri: 4,
                     tetra: 3,
@@ -131,50 +123,33 @@
         methods: {
 
             async run_perf(){
-                if(this.input.seq == null && this.input.file == null){
+                if(this.input.file == null){
                     this.mensaje.color = 'danger'
                     this.mensaje.text = 'Faltan secuencias que analizar'
                     this.showAlert()
                 }else{
                     try {
+                        
+                        let formData = new FormData;
+                        formData.append('file',this.input.file)
+                        formData.append('di',this.input.di)
+                        formData.append('tri',this.input.tri)
+                        formData.append('tetra',this.input.tetra)
+                        formData.append('penta',this.input.penta)
+                        formData.append('hexa',this.input.hexa)
+
                         this.show = true
                         this.show_result = false
-                        /* let res = await this.$axios.post('/biotools/perf', this.input)
-                        console.log(res.data)
+
+                        let res = await this.$axios.post('/biotools/perf', formData)
                         this.show = false
-                        this.show_result = true */
-
-                        if(this.input.file != null){
-                            let formData = new FormData;
-                            formData.append('file',this.input.file)
-                            formData.append('mono',this.input.mono)
-                            formData.append('di',this.input.di)
-                            formData.append('tri',this.input.tri)
-                            formData.append('tetra',this.input.tetra)
-                            formData.append('penta',this.input.penta)
-                            formData.append('hexa',this.input.hexa)
-
-                            let res = await this.$axios.post('/biotools/perf', formData)
-                            this.show = false
-                            this.show_result = true
-                            this.status = res.data.status
-                           /*  this.result = res.data.report
-                            this.report = res.data.tsv
-                            this.html = res.data.html */
-                            this.clear()
-                            console.log(res.data)
-                        }else{
-                            let res = await this.$axios.post('/biotools/perf', this.input)
-                            this.show = false
-                            this.show_result = true
-                            this.status = res.data.status
-
-                            this.result = res.data.result
-                            /* this.result = res.data.report
-                            this.report = res.data.tsv
-                            this.html = res.data.html */
-                            this.clear()
-                        }             
+                        this.show_result = true
+                        console.log(res.data)
+                        this.status = res.data.status
+                        this.result = res.data.result.stats
+                        this.report = res.data.result.tsv
+                        this.html = res.data.result.html
+                        this.clear()
                     } catch (error) {
                         console.log(error)
                     }
@@ -200,7 +175,6 @@
 
             clear() {
                 this.input.file = null
-                this.input.seq = null
             },
 
             countDownChanged(dismissCountDown) {
