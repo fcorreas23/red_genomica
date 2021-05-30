@@ -4,9 +4,8 @@
         <hr>
         <b-card border-variant="light" header-bg-variant="light" header-text-variant="dark" header="Enter DNA Query Sequence">
             
-            <b-form-group label="Enter one or more queries the text box or use the browse button to upload a file from your local disk. The file may contain a single sequence or a list of sequences. In both cases, the data must be in FASTA format.">
+            <b-form-group label="Enter one or more queries the text box. The data must be in FASTA format.">
                 <b-form-textarea rows="8" cols=89 v-model="input.sequence" style="font-size: 10pt"></b-form-textarea>
-<!--                 <b-form-file v-model="file" accept=".fasta, .fna, .fnn, .fa" class="mt-1 mb-3" plain></b-form-file>-->            
             </b-form-group>      
             <b-row>
                 <b-col>
@@ -60,27 +59,27 @@
 
                     case 0:
                         console.log('None')
-                        res = await this.$axios.post('/seq/none/', this.input)
+                        res = await this.$axios.post('/seqkit/none/', this.input)
                         this.input.sequence = res.data.sequence
                         break;
                     case 1:
                         console.log('Remove no coding characters');
-                        res = await this.$axios.post('/seq/remove-gaps/', this.input)
+                        res = await this.$axios.post('/seqkit/remove-gaps/', this.input)
                         this.input.sequence = res.data.sequence
                         break;
                     case 2:
                         console.log('Reverse sequence.')
-                        res = await this.$axios.post('/seq/reverse/', this.input)
+                        res = await this.$axios.post('/seqkit/reverse/', this.input)
                         this.input.sequence = res.data.sequence                        
                         break;
                     case 3:
                         console.log('Complement sequence.');
-                        res = await this.$axios.post('/seq/complement/', this.input)
+                        res = await this.$axios.post('/seqkit/complement/', this.input)
                         this.input.sequence = res.data.sequence
                         break;
                     case 4:
                         console.log('Reverse and Complement sequence');
-                        res = await this.$axios.post('/seq/reverse-complement/', this.input)
+                        res = await this.$axios.post('/seqkit/reverse_complement/', this.input)
                         this.input.sequence = res.data.sequence
                         break;
                     default:
