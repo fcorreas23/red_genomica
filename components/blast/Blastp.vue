@@ -1,17 +1,15 @@
 <template>
+    <b-overlay :show="show" rounded="sm" >
     <div id="blastp">
-
-        <b-card-text>
-            Search protein database using a protein query.
-        </b-card-text>
+        <b-card-text>Search protein database using a protein query.</b-card-text>
         
         <b-card border-variant="light" header-bg-variant="primary" header-text-variant="white" header="Enter Protein Query Sequence">
-            <p><small>Enter one or more queries in the top text box or use the browse button to upload a file from your local disk. The file may contain a single sequence or a list of sequences. In both cases, the data must be in FASTA format.</small></p>
+            <p><small>Enter one or more queries in the top text box. The data must be in FASTA format.</small></p>
             <b-card-text>
                 <b-form-textarea
                     id="textarea-rows"
                     rows="8"
-                    v-model="querys.seq"
+                    v-model="input.sequences"
                     style="font-size: 10pt"
                 ></b-form-textarea>
             </b-card-text>
@@ -19,8 +17,9 @@
 
         <b-card border-variant="light" header-bg-variant="primary" header-text-variant="white" header="Choose Search Target" class="mt-2">
             <p><small>Choose from one of the protein BLAST databases listed below. </small></p>
-            <b-form-select v-model="querys.db" :options="databases"></b-form-select>
+            <b-form-select v-model="input.database" :options="options"></b-form-select>
         </b-card>
+
         <b-alert
             :show="dismissCountDown"
             dismissible
@@ -34,11 +33,9 @@
 
         <hr>
 
-        <b-card border-variant="light" header-bg-variant="success" header-text-variant="white" header="Resultados" class="mt-3" v-if="show" >
+        <b-card border-variant="light" header-bg-variant="success" header-text-variant="white" header="Resultados" class="mt-3" v-if="show_result" >
             <div class="d-flex justify-content-center mb-3">
-              <b-spinner label="Loading..." v-if="show_load"></b-spinner>
                 <b-card-text>
-
                         <table class="table table-responsive table-hover table-sm">
                             <thead class="thead-secondary">
                                 <tr>
@@ -80,6 +77,13 @@
             </div>  
         </b-card>
     </div>
+    <template v-slot:overlay>
+        <div class="text-center">
+            <b-icon icon="stopwatch" font-scale="3" animation="cylon"></b-icon>
+            <p class="text-center"><b>Runing Blastp <br>Please wait...</b></p>
+        </div>
+    </template>
+    </b-overlay>
 </template>
 
 <script>
@@ -87,19 +91,17 @@
         data(){
             return {
                 show: false,
-                show_load: false,
-                querys: {
+                show_result: false,
+                input: {
                     type: 'blastp',
-                    seq: '>example\nMTIMSSLAGAGRGVVNTIGGAAQGINSVKSSADRNAALVSNTGSTDSIDATRSSISKGDAKSAELDGTANEENGLLRESSMLAGFEDKKEALSNQIVASKIRNSVVQF',
-                    db: null,
+                    sequences: '>example\nMTIMSSLAGAGRGVVNTIGGAAQGINSVKSSADRNAALVSNTGSTDSIDATRSSISKGDAKSAELDGTANEENGLLRESSMLAGFEDKKEALSNQIVASKIRNSVVQF',
+                    database: null,
                     max_target_seqs: 20,
                     evalue: 10.0
                 },
-                databases: [
+                options: [
                     { value: null, text: 'Please select a database' },
-                    { value: '/prot/db1/INIAPs', text: 'INIA Database' },
-                    { value: '/prot/db3/PsyringaeGroup', text: 'NCBI database - Pseudomonas' },
-                    { value: '/prot/db4/swiss-Prot', text: 'Swiss-Prot database' }
+                    { value: '/blastdb/prot/labinia', text: 'INIA database' }
                 ],
                 resultados: [],
                 mensaje: {
@@ -112,17 +114,19 @@
         },
         methods: {
             async blast(){
-                if(this.querys.seq == '' || this.querys.db == null){
+
+                if(this.input.sequences == '' || this.input.database == null){
                     this.mensaje.color = 'danger'
                     this.mensaje.text = 'Select database or paste sequence'
                     this.showAlert()
                 }else{
                     try {
                         this.show = true
-                        this.show_load = true
-                        let res = await this.$axios.post('/tools/blast',this.querys)
-                        this.show_load = false
-                        this.resultados = res.data.blast  
+                        this.show_result = false
+                        let res = await this.$axios.post('/biotools/blast',this.input)
+                        this.show = false
+                        this.show_result = true
+                        this.resultados = res.data.result
                     } catch (error) {
                         console.log("Error", error)
                     }
@@ -138,7 +142,3 @@
         }        
     }
 </script>
-
-<style>
-
-</style>

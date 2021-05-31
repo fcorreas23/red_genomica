@@ -13,7 +13,6 @@
                     </b-card>
 
                     <b-form-group label="Use the browse button to upload a file from your local disk. The file may contain a single sequence or a list of sequences. The data must be in FASTA format.">
-                        <!-- <b-form-textarea rows="8" v-model="input.seq" style="font-size: 10pt"></b-form-textarea> -->
                         <b-form-file v-model="input.file" accept=".fasta, .fna, .fnn, .fa" class="mt-1 mb-3" plain></b-form-file>
                     </b-form-group>                    
                     <p>Minimum number of repeating units to be considered.</p>
@@ -78,11 +77,7 @@
                     <p class="text-center"><b>Searching<br>Please wait...</b></p>
                 </div>
             </template>
-        </b-overlay> 
-
-        
-
-        
+        </b-overlay>        
     </b-container>
 </template>
 

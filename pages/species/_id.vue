@@ -14,7 +14,7 @@
                               <thead>
                                 <tr>
                                 <th scope="col">Codigo</th>
-                                <th scope="col">Especie</th>
+                                <th scope="col">Grupo taxonomico</th>
                                 <th scope="col">Version</th>
                                 <th scope="col">Level</th>
                                 <th scope="col">#Contigs</th>

@@ -34,9 +34,10 @@
                             <b-dropdown-item to="/tools/external_tools">Herramienras externas</b-dropdown-item>
 
                         </b-nav-item-dropdown>
-                       <b-nav-item to="/articulos">Notas</b-nav-item>
-                       <b-nav-item to="/About">About</b-nav-item>
-                       <b-nav-item-dropdown text="Bioinformatics analysis" rigth v-if="logueado">
+                        <b-nav-item to="/articulos">Notas</b-nav-item>
+                        <b-nav-item to="/About">About</b-nav-item>
+                        <b-nav-item to="/About">Biotools</b-nav-item>
+                        <!-- <b-nav-item-dropdown text="Bioinformatics analysis" rigth v-if="logueado">
                             <b-dropdown-item to="/pipelines/data_preprocessing">Pre-assembly</b-dropdown-item>
                             <b-dropdown-item to="/pipelines/assembly">Assembly</b-dropdown-item>
                             <b-dropdown-item to="/pipelines/quality">Post-assembly</b-dropdown-item>
@@ -44,11 +45,10 @@
                             <b-dropdown-item to="/pipelines/anotacion">Functional annotation</b-dropdown-item>
                             <b-dropdown-item to="/pipelines/qtl">QTL mapping</b-dropdown-item>
                             <b-dropdown-item to="/pipelines/ssr"> Microsatellites </b-dropdown-item>
-                            <!-- <b-dropdown-item to="/pipelines/ortologos">orthologs</b-dropdown-item> -->
-                        </b-nav-item-dropdown>
-                   </b-navbar-nav>
+                        </b-nav-item-dropdown> -->
+                    </b-navbar-nav>
 
-                    <b-navbar-nav class="ml-auto">
+                    <!-- <b-navbar-nav class="ml-auto">
                         <b-nav-item to="/login" v-if="!logueado">Login</b-nav-item>
                             <b-nav-item-dropdown right v-else>
                                 <template v-slot:button-content>
@@ -65,7 +65,7 @@
                                     Sign Out
                                 </b-dropdown-item-button>
                             </b-nav-item-dropdown>                           
-                   </b-navbar-nav>
+                   </b-navbar-nav> -->
                </b-collapse>
            </b-container>
        </b-navbar>
