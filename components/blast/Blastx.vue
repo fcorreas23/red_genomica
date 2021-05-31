@@ -41,8 +41,6 @@
                                 <tr>
                                     <th>Query id </th>
                                     <!-- <th>Qlength</th> -->
-                                    <th>Subject id</th>
-                                    <th>Slength</th>
                                     <th>Description</th>
                                     <th>Per. Iden</th>
                                     <th>Query Coverage </th>
@@ -50,15 +48,18 @@
                                     <!-- <th>Mismatches</th> -->
                                     <!-- <th>Gap openings</th> -->
                                     <th>E-value</th>
+                                    <th>Slength</th>
+                                    <th>Accession</th>
                                    <!--  <th>Bitscore</th> -->
                                 </tr>
                             </thead>
-                              <tbody>
+                            <tbody>
                                 <tr v-for="(item,i) in resultados" :key="i">
                                     <td>{{item.qseqid}}</td>
                                    <!--  <td>{{item.qlen}}</td> -->
-                                    <td><nuxt-link :to="`/tools/seq/${item.sseqid}`" class="btn btn-light">{{item.sseqid}}</nuxt-link></td>
-                                    <td>{{item.slen}}</td>
+                                    
+                                    <!-- <td>{{item.sseqid}}</td> -->
+                                    
                                     <td>{{item.stitle}}</td>
                                     <td>{{item.pident}}</td>
                                     <td>{{item.qcovs}}</td>
@@ -66,10 +67,12 @@
                                     <!-- <td>{{item.mismatch}}</td>
                                     <td>{{item.gapopen}}</td> -->
                                     <td>{{item.evalue}}</td>
+                                    <td>{{item.slen}}</td>
+                                    <td><nuxt-link :to="`/data/${item.sseqid}`" class="btn btn-light btn-sm">{{item.sseqid}}</nuxt-link></td> 
                                    <!--  <td>{{item.bitscore}}</td> -->
 
                                 </tr>
-                            </tbody>                        
+                            </tbody>                       
                         </table>
                     <!--<b-table striped hover  :items="resultados"></b-table>-->
                 </b-card-text>
