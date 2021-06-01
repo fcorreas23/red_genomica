@@ -8,39 +8,36 @@
         <hr>
         <p class="text-center">Plataforma bioinformática con datos genómicos y herramientas de análisis para estudiar la variabilidad genética de las poblaciones de <i>Pseudomonas syringea</i> y nematodos agalladores (<i>Meloidogyne spp</i>), que afectan los frutales de Prunus en Chile. Para facilitar el desarrollo de herramientas de identificación de variantes (y/o especies) y estudios epidemiológicos para su control.</p>
 
-        <b-container fluid class="p-4 bg-ligth">
+        <b-container fluid class="p-4 bg-dark">
           <b-row>
             <b-col>
-              <b-img thumbnail fluid src="https://picsum.photos/250/250/?image=54" alt="Image 1"></b-img>
+              <b-img thumbnail fluid src="~/assets/img/1.jpg" alt="Responsive image"></b-img>
             </b-col>
             <b-col>
-              <b-img thumbnail fluid src="https://picsum.photos/250/250/?image=58" alt="Image 2"></b-img>
+              <b-img thumbnail fluid src="~/assets/img/2.jpg" alt="Responsive image"></b-img>
             </b-col>
             <b-col>
-              <b-img thumbnail fluid src="https://picsum.photos/250/250/?image=59" alt="Image 3"></b-img>
+              <b-img thumbnail fluid src="~/assets/img/3.jpg" alt="Responsive image"></b-img>
+            </b-col>
+            <b-col>
+              <b-img thumbnail fluid src="~/assets/img/4.jpg" alt="Responsive image"></b-img>
             </b-col>
           </b-row>
         </b-container>
-
-        <!-- <div class="imagenes mt-4">
-          <b-row>
-            <b-col>
-              <b-img thumbnail fluid src="https://www.sciadnewswire.com/sites/default/files/images/slideshow/iStock_000019077670Medium.jpg" alt="Image 3"></b-img>
-            </b-col>
-            <b-col>
-              <b-img thumbnail fluid src="https://salud.ideal.es/wp-content/images/noticias/bioinfo.jpg" alt="Image 2"></b-img>
-            </b-col>
-            <b-col>
-              <b-img thumbnail fluid src="https://www.bbva.com/wp-content/uploads/2017/08/iStock-664868402-1024x683.jpg" alt="Image 3"></b-img>
-            </b-col>
-            <b-col>
-              <b-img thumbnail fluid src="https://www.cabecera.mx/wp-content/uploads/2017/03/d66e89a1d1214ea7700754049bad4795.jpg" alt="Image 1"></b-img>
-            </b-col>
-          </b-row>
-        </div> -->
-        
       </b-card-text>
     </b-card>
+    <b-alert show variant="success" class="mt-3">
+      <h4 class="alert-heading">Well done!</h4>
+      <p>
+        Aww yeah, you successfully read this important alert message. This example text is going to
+        run a bit longer so that you can see how spacing within an alert works with this kind of
+        content.
+      </p>
+      <hr>
+      <p class="mb-0">
+        Whenever you need to, be sure to use margin utilities to keep things nice and tidy.
+      </p>
+    </b-alert>
   </b-container>
 </template>
 

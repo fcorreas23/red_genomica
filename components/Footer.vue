@@ -1,8 +1,8 @@
 <template>
-    <footer class="footer mt-3">
+    <footer class="footer mt-4">
         <div class="text-center">
             <div class="copyright">
-                <p>© <span>2020</span> <a href="http://www.smartbios.cl" target="_blank" class="transition">SmartBiOS</a> All rights reserved.</p>
+                <p>© <span>2020</span> <a href="http://www.smartbios.cl" target="_blank" class="transition">Red Genómica INIA</a> All rights reserved.</p>
             </div>
         </div>        
     </footer>
@@ -13,8 +13,8 @@ a:hover{
     text-decoration:none;
 }
 .footer {
-    padding: 60px 0;
-    background-color: #011213;
+    padding: 30px 0;
+    background-color: #152a30;
 }
 .footer .copyright  {
     color: #e5e5e5;

@@ -4,7 +4,7 @@
            <b-container>
                <b-navbar-brand to="/">                   
                     <!-- <b>RedGBioNIA</b> -->
-                    <b>RedBioINIA</b>
+                    <b>RedGBioINIA</b>
                 </b-navbar-brand>
                <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
                
@@ -17,8 +17,9 @@
                         </b-nav-item-dropdown>
 
                         <b-nav-item-dropdown text="Datos" rigth >
-                            <b-dropdown-item to="/data/mlst">MLST</b-dropdown-item>
-                            <b-dropdown-item to="/data/typeIII">Type III secretion systems</b-dropdown-item>
+                            <b-dropdown-item to="/data/datos">Datos en general</b-dropdown-item>
+                            <b-dropdown-item to="/data/boletin">Boletines</b-dropdown-item>
+                            <b-dropdown-item to="/data/publicaciones">Publicaciones</b-dropdown-item>
                         </b-nav-item-dropdown>
 
                         <b-nav-item-dropdown text="Busqueda" rigth >
@@ -36,7 +37,7 @@
                         </b-nav-item-dropdown>
                         <b-nav-item to="/articulos">Notas</b-nav-item>
                         <b-nav-item to="/About">About</b-nav-item>
-                        <b-nav-item to="/About">Biotools</b-nav-item>
+                        <b-nav-item to="/" disabled>Biotools</b-nav-item>
                         <!-- <b-nav-item-dropdown text="Bioinformatics analysis" rigth v-if="logueado">
                             <b-dropdown-item to="/pipelines/data_preprocessing">Pre-assembly</b-dropdown-item>
                             <b-dropdown-item to="/pipelines/assembly">Assembly</b-dropdown-item>
@@ -77,13 +78,13 @@
 export default {
 
     computed:{
-        logueado(){
+        /* logueado(){
             return this.$store.state.usuario;
-        }
+        } */
     },
 
     methods: {
-        async logout(){
+        /* async logout(){
             try {
                 let res = await this.$axios.post('/user/clean', {user: this.$store.state.usuario._id})
                 console.log(res.data)
@@ -91,7 +92,7 @@ export default {
             } catch (error) {
                     console.log(error)
             } 
-        }
+        } */
   }
 }
 </script>

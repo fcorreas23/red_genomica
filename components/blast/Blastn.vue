@@ -30,7 +30,7 @@
         </b-alert>
         <button @click="blast" class="btn btn-secondary">BLAST</button>
         <hr>
-        <b-card border-variant="light" header-bg-variant="success" header-text-variant="white" header="Resultados" class="mt-3" v-if="show" >
+        <b-card border-variant="light" header-bg-variant="success" header-text-variant="white" header="Resultados" class="mt-3" v-if="show_load" >
             <div class="d-flex justify-content-center mb-3">
                 <b-card-text>
                     <b-table striped hover  :items="resultados"></b-table>
@@ -63,8 +63,8 @@
                 },
                 options: [
                     { value: null, text: 'Please select a database' },
-                    { value: '/nucl/db1/INIAPs', text: 'INIA database' },
-                    { value: '/blastdb/nucl/references/references_transcripts', text: 'NCBI database' }
+                    { value: '/blastdb/nucl/labinia', text: 'INIA mRNA database' },
+                    { value: '/blastdb/nucl/references_transcripts', text: 'NCBI mRNA database' }
                 ],
                 resultados: [],
                 mensaje: {
@@ -84,9 +84,10 @@
                 }else{
                     try {
                         this.show = true
-                        this.show_load = true
-                        let res = await this.$axios.post('/biotools/blast',this.input)
                         this.show_load = false
+                        let res = await this.$axios.post('/biotools/blast',this.input)
+                        this.show_load = true
+                        this.show = false
                         this.resultados = res.data.result  
                     } catch (error) {
                         console.log("Error", error)

@@ -5,7 +5,7 @@
         <b-overlay :show="show_search" rounded="sm" >
             <b-card class="mb-2">
                 <b-card-text>
-                    <p>We also recommend, as a complement to searching the annotations, that you search, using BLAST , for homologs to a protein of interest, to find additional genes/proteins of interest that may have annotations that don't show up in your annotation search (i.e. if you want all homologs of a particular membrane protein, but the particular membrane protein has been named differently by different Genomes Projects). </p>
+                    <p>Recomendamos como complemento de la búsqueda por texto simple, que busque, mediante BLAST, homólogos de una proteína de interés, para encontrar genes / proteínas de interés adicionales que puedan tener anotaciones que no aparecen en su búsqueda de anotaciones. Ya que los genes  han sido nombradsos de manera diferentepor diferentes Proyectos de Genomas.</p>
                     <b-form-group description="eg. copA, acnb, type III, ATP binding, zinc finge">
                         <b-input-group class="mt-3">
                             <b-form-input v-model="buscar" size="sm"></b-form-input>
