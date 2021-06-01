@@ -43,7 +43,7 @@
                         </table>
                         <hr>
                         <p><strong>Descripción</strong></p>
-                        <p> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla impedit voluptatem nobis eos? Repudiandae voluptatum, non odit eos ut totam!</p>
+                        <p></p>
                         <hr>
                         <p><strong>Secuanciacion, Ensamble y  Anotacióm</strong></p>
                         {{genoma.methods}}
@@ -60,7 +60,7 @@
                         <div class="row">
                             <div class="col-md-4">Blast results </div>
                             <div class="col-md-8">
-                                <b-link :href="`ftp://${host}/Pseudomonas/${genoma.group}/${genoma.code}/blast/`">Download</b-link>
+                                <b-link :href="`ftp://${host}/Pseudomonas/${genoma.group}/${genoma.code}/blast/${genoma.code}_genomic_vs_nt.tsv`">Download</b-link>
                             </div>
                         </div> 
                     </b-card-text>
