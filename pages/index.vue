@@ -1,7 +1,7 @@
 <template>
   <b-container class="mt-3">
     <b-card 
-      class="portada1"
+      class="portada1 shadow p-3 mb-5 bg-white rounded"
     >
       <b-card-text class="lead">
         <h3><b>Red Genómica y Bioinformática INIA</b></h3>
@@ -26,18 +26,6 @@
         </b-container>
       </b-card-text>
     </b-card>
-    <b-alert show variant="success" class="mt-3">
-      <h4 class="alert-heading">Well done!</h4>
-      <p>
-        Aww yeah, you successfully read this important alert message. This example text is going to
-        run a bit longer so that you can see how spacing within an alert works with this kind of
-        content.
-      </p>
-      <hr>
-      <p class="mb-0">
-        Whenever you need to, be sure to use margin utilities to keep things nice and tidy.
-      </p>
-    </b-alert>
   </b-container>
 </template>
 
@@ -51,12 +39,6 @@ export default {
 <style scoped>
 .portada1{
     background-color: whitesmoke;
-   
-}
-
-.portada2{
-    height: 300px;
-    padding: 2%;
    
 }
 </style>

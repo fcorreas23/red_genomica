@@ -13,8 +13,8 @@ a:hover{
     text-decoration:none;
 }
 .footer {
-    padding: 30px 0;
-    background-color: #152a30;
+    padding: 20px 0;
+    background-color: #1a1f20;
 }
 .footer .copyright  {
     color: #e5e5e5;

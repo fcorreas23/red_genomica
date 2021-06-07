@@ -7,7 +7,15 @@
                 <b-tab title="Description" active>
                     <b-card-text>
                         <hr>
-                        <p class="text-justify"><i>Meloidogyne</i> spp. es uno de los géneros de nematodos más importantes debido a las pérdidas que produce en los cultivos, ya que induce alteraciones en las raíces provocando agallas. Para esto, rompe las células de la planta, disuelve las paredes celulares o induce cambios fisiológicos en los tejidos radicales como resultado de la inyección de sustancias fitotóxicas a través de su estilete. Estas afecciones provocan una predisposición de la planta al ataque de otros microorganismos patógenos como hongos, bacterias y virus que penetran la planta a través de las heridas ocasionadas por el nematodo. Se trata de especies endoparásitas obligadas, capaces de adaptarse a una gran cantidad de plantas huéspedes y con una elevada tasa de reproducción con varias generaciones por año.</p>
+                        <b-row>
+                            <b-col sm="12" md="9">
+                                 <p class="text-justify"><i>Meloidogyne</i> spp. es uno de los géneros de nematodos más importantes debido a las pérdidas que produce en los cultivos, ya que induce alteraciones en las raíces provocando agallas. Para esto, rompe las células de la planta, disuelve las paredes celulares o induce cambios fisiológicos en los tejidos radicales como resultado de la inyección de sustancias fitotóxicas a través de su estilete. Estas afecciones provocan una predisposición de la planta al ataque de otros microorganismos patógenos como hongos, bacterias y virus que penetran la planta a través de las heridas ocasionadas por el nematodo. Se trata de especies endoparásitas obligadas, capaces de adaptarse a una gran cantidad de plantas huéspedes y con una elevada tasa de reproducción con varias generaciones por año.</p>
+                            </b-col>
+                            <b-col sm="12" md="3">
+                                <b-img thumbnail fluid src="~/assets/img/Meloidogyne.jpg" alt="Responsive image"></b-img>
+                            </b-col>
+                        </b-row>
+                       
                     </b-card-text>
                 </b-tab>
                 <b-tab title="Genomas">

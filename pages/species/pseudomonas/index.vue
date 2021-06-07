@@ -8,11 +8,22 @@
                     <b-card-text>
                         <!-- <h4>Descripción</h4> -->
                         <hr>
-                        <p class="text px-2"><b><i>Pseudomonas syringae </i></b>es una bacteria gram-negativa, patógena de plantas, que se clasifica en patovares según su especificidad de hospedador. Está vinculada al ciclo del agua pudiendo alcanzar la superficie de la hojas a través de precipitaciones. Una vez en la superficie de la hoja puede sobrevivir epifíticamente o penetrar en su interior a través de aperturas naturales como estomas o heridas, y crecer activamente en el apoplasto, causando en este caso enfermedad. La infección por este patógeno determina perdidas económicas importantes pudiendo afectar gravemente tanto a la producción neta como a la calidad. Las estrategias de prevención habituales, a menudo insuficientes, poco eficientes y/o contaminantes, consisten en el uso de tratamientos químicos con base de cobre, el uso de material vegetal libre de patógeno, la rotación de cultivos, y en el cultivo de variedades tradicionalmente más resistentes.</p>
+                        <b-row>
+                            <b-col sm="12" md="9">
+                                <p class="text px-2"><b><i>Pseudomonas syringae </i></b>es una bacteria gram-negativa, patógena de plantas, que se clasifica en patovares según su especificidad de hospedador. Está vinculada al ciclo del agua pudiendo alcanzar la superficie de la hojas a través de precipitaciones. Una vez en la superficie de la hoja puede sobrevivir epifíticamente o penetrar en su interior a través de aperturas naturales como estomas o heridas, y crecer activamente en el apoplasto, causando en este caso enfermedad. La infección por este patógeno determina perdidas económicas importantes pudiendo afectar gravemente tanto a la producción neta como a la calidad. Las estrategias de prevención habituales, a menudo insuficientes, poco eficientes y/o contaminantes, consisten en el uso de tratamientos químicos con base de cobre, el uso de material vegetal libre de patógeno, la rotación de cultivos, y en el cultivo de variedades tradicionalmente más resistentes.</p>
                         
-                        <p class="text px-2">Una de las enfermedades que mayormente inciden en el cultivo del cerezo, es el <b>cáncer bacterial</b>, causado por <b><i>Pseudomonas syringae pv. syringae</i></b>. Los síntomas pueden aparecer a los pocos meses de la plantación, localizándose en el tronco, desde el cuello hasta el nacimiento de las ramas principales, o bien en las axilas de las mismas (Pinilla et al., 2010). Es una enfermedad muy importante en árboles nuevos, de difícil control, la que en cierta medida ha limitado el desarrollo de esta especie frutal en Chile (Latorre, 2008).</p>
+                                <p class="text px-2">Una de las enfermedades que mayormente inciden en el cultivo del cerezo, es el <b>cáncer bacterial</b>, causado por <b><i>Pseudomonas syringae pv. syringae</i></b>. Los síntomas pueden aparecer a los pocos meses de la plantación, localizándose en el tronco, desde el cuello hasta el nacimiento de las ramas principales, o bien en las axilas de las mismas (Pinilla et al., 2010). Es una enfermedad muy importante en árboles nuevos, de difícil control, la que en cierta medida ha limitado el desarrollo de esta especie frutal en Chile (Latorre, 2008).</p>
 
-                        <p class="text px-2">El desarrollo de nuevas estrategias de control de las enfermedades causadas por este patógeno es por tanto necesario y de interés económico, y requiere de un mayor conocimiento tanto de los mecanismos de virulencia del patógeno como de los mecanismos de defensa contra el mismo.</p>
+                                <p class="text px-2">El desarrollo de nuevas estrategias de control de las enfermedades causadas por este patógeno es por tanto necesario y de interés económico, y requiere de un mayor conocimiento tanto de los mecanismos de virulencia del patógeno como de los mecanismos de defensa contra el mismo.</p>
+                            </b-col>
+                            <b-col sm="12" md="3">
+                                <b-img thumbnail fluid src="~/assets/img/psyringae.jpg" alt="Responsive image"></b-img>
+
+                            </b-col>
+
+
+                        </b-row>
+                        
                     </b-card-text>
                 </b-tab>
                 

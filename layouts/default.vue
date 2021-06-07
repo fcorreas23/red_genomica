@@ -1,8 +1,11 @@
 <template>
   <div>
     <Navbar />
-      <nuxt />
-    <!-- <Footer /> -->
+      <div class="d-flex flex-column min-vh-100">
+        <nuxt />
+      </div>
+      
+   <Footer />
   </div>
 </template>
 

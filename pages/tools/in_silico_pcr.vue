@@ -14,7 +14,7 @@
                         >
                             <b-form-select id= "organism" v-model="input.seq">
                                 <b-form-select-option :value="null" >Select a genome</b-form-select-option>
-                                <b-form-select-option v-for="item in syringae" :key="item._id" :value="`${item.code}`">{{item.code}} {{item.specie.scientific_name}}</b-form-select-option>
+                                <b-form-select-option v-for="item in genomas" :key="item._id" :value="`${item.code}`">{{item.code}} {{item.specie.scientific_name}}</b-form-select-option>
                             </b-form-select>
                         </b-form-group>
                         <b-form-group
