@@ -3,7 +3,7 @@
     <div id="blastp">
         <b-card-text>Search protein database using a nucleotide query.</b-card-text>
         
-        <b-card border-variant="light" header-bg-variant="primary" header-text-variant="white" header="Enter Nucleotide Query Sequence">
+        <b-card border-variant="light" header-bg-variant="info" header-text-variant="white" header="Enter Nucleotide Query Sequence">
             <p><small>Enter one or more queries in the top text box. The data must be in FASTA format.</small></p>
             <b-card-text>
                 <b-form-textarea
@@ -15,7 +15,7 @@
             </b-card-text>
         </b-card>
 
-        <b-card border-variant="light" header-bg-variant="primary" header-text-variant="white" header="Choose Search Target" class="mt-2">
+        <b-card border-variant="light" header-bg-variant="info" header-text-variant="white" header="Choose Search Target" class="mt-2">
             <p><small>Choose from one of the protein BLAST databases listed below. </small></p>
             <b-form-select v-model="input.database" :options="options"></b-form-select>
         </b-card>

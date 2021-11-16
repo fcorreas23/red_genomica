@@ -30,7 +30,6 @@
                             label-for="mismatch"   
                         >
                             <b-form-spinbutton v-model="input.mismatch" min="0" max="3" class="mb-2"></b-form-spinbutton>
-                            <!-- <b-form-select id= "mismatch" v-model="input.mismatch" :options="options"></b-form-select> -->
                         </b-form-group>
                     </b-col>
                     <b-col md="3" sm="6">
@@ -65,14 +64,14 @@
             <button @click="in_silico_pcr" class="btn btn-secondary btn-small mt-3">Run PCR</button>
         </b-card>
         <hr>
-        <div class="resultados">
+        <!-- RESULTADOS -->
+        <div class="resultados" v-if="show_result">
 
              <b-card
                 border-variant="light"
-                header="Result"
+                header="Resultado"
                 header-bg-variant="success"
                 header-text-variant="white"
-                v-if="show_result"
             >
                 <b-card-text>
                     <b-row>
@@ -126,12 +125,14 @@
                 return this.genomas.filter(f => f.group == 'Pseudomonas_syringae_group')
             }
         },
+
         methods: {
             
             async in_silico_pcr(){
                 try {
                     if(this.input.seq != null){
                         this.show = true
+                        this.show_result = false
                         let res = await this.$axios.post('/biotools/in_silico_pcr/', this.input)
                         this.resultado_pcr = res.data.result.pcr_stats
                         this.resultado_amplicon = res.data.result.amplicon

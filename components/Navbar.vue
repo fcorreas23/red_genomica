@@ -31,6 +31,7 @@
                             <b-dropdown-item to="/tools/in_silico_pcr"><i>In silico</i> PCR</b-dropdown-item>
                             <b-dropdown-item to="/tools/seq_edit">Sequence Manipulation</b-dropdown-item>
                             <b-dropdown-item to="/tools/microsatellite">Simple Sequence Repeats</b-dropdown-item>
+                            <b-dropdown-item to="/tools/corehunter">CoreHunter 3</b-dropdown-item>
                             <b-dropdown-item to="/tools/external_tools">Herramienras externas</b-dropdown-item>
 
                         </b-nav-item-dropdown>
