@@ -83,10 +83,10 @@
                         </b-col>
                         <b-col md="1">
                             <b-form-group label="Weight (%)">
-                                <b-form-input v-model="weight" size="sm"></b-form-input>
+                                <b-form-input type="number" v-model="weight" size="sm"></b-form-input>
                             </b-form-group>
-                        </b-col>
-                        <b-col md="12">
+                        </b-col> 
+                        <b-col md="12" class="mt-2">
                             <b-form-group class="pt-1">
                                 <b-button-group size="sm">
                                     <b-button @click="addObjetive" variant="primary">Add Objetive</b-button>
@@ -113,9 +113,9 @@
                                 <tbody>
                                     <tr v-for="(item, index) in input.objetives" :key=index> <!-- Recorremos nuestro array -->
                                         <td v-text="index +1"></td> <!--En la primera columna mostramos el nombre-->
-                                        <td v-text="item.type"></td> <!--En la primera columna mostramos el nombre-->
-                                        <td v-text="item.measure"></td> <!--En la primera columna mostramos el nombre-->
-                                        <td v-text="item.weight"></td> <!--En la segunda mostramos el apellido-->
+                                        <td v-text="item[0]"></td> <!--En la primera columna mostramos el nombre-->
+                                        <td v-text="item[1]"></td> <!--En la primera columna mostramos el nombre-->
+                                        <td v-text="item[2]"></td> <!--En la segunda mostramos el apellido-->
                                     </tr>                       
                                 </tbody>
                             </table>
@@ -123,7 +123,7 @@
                         
                     </b-row>                 
                 </b-card>
-                
+                <b-alert  :show="message.dismissCountDown" dismissible :variant="message.color" @dismissed="message.dismissCountDown=0" @dismiss-count-down="countDownChanged"> {{message.text}}</b-alert>
             </b-card-text>
             <template v-slot:overlay>
                 <div class="text-center">
@@ -135,6 +135,7 @@
            
             <hr>
             <b-button @click="corehunter" variant="primary" size="sm">Run CoreHunter</b-button>
+           
             
         </b-card>
         <hr>
@@ -148,7 +149,7 @@
                 header-text-variant="white"
             >
                 <b-card-text>
-                    
+                    {{input}}
                 </b-card-text>
             </b-card>
         </div>     
@@ -166,11 +167,13 @@
                     core: 10,
                     mode: 'default',
                     time: 5,
-                    always: '',
-                    never: '',
+                    always: null,
+                    never: null,
                     objetives: []
-                }, 
-                
+                },
+                type: 'EN',
+                measure: 'MR',
+                weight: 100,
                 modes: [
                     { value: 'default', text: 'default'},
                     { value: 'fast', text: 'fast'}
@@ -189,9 +192,13 @@
                     { value: 'GD', text: '(GD) Gower distance'},
                     { value: 'PD', text: '(PD) Precomputed distances'}
                 ],
-                type: 'EN',
-                measure: 'MR',
-                weight: 100
+
+                message: {
+                    color: '',
+                    text: '',
+                    dismissSecs: 3,
+                    dismissCountDown: 0
+                }
             }
         },
 
@@ -200,12 +207,32 @@
             async corehunter(){
                 try {
                     if(this.input.dataset != null){
+                        
+                        console.log(this.input.objetives.length)
+                        
+                        let formData = new FormData;
+                        formData.append('file',this.input.dataset)
+                        formData.append('core', this.input.core)
+                        formData.append('mode', this.input.mode)
+                        formData.append('time', this.input.time)
+                        formData.append('always', this.input.always)
+                        formData.append('never', this.input.never)
+                        formData.append('objetives', this.input.objetives)
+
+                        
                         this.show = true
                         this.show_result = false
+                        //console.log(formData)
+                        let res = await this.$axios.post('/biotools/corehunter', formData)
+                        console.log(res)
+
                         this.show_result = true
                         this.show = false
                     
                     }else{
+                        this.message.text = "Ingrese set de datos"
+                        this.message.color = "warning"
+                        this.showAlert()
                         console.log("Faltan parametros")
                     }
                    
@@ -215,45 +242,51 @@
             },
 
             addObjetive(){
-
-                let weight
                 
+                let objetives = this.input.objetives
+                let sum = 0
+                let x = 0                        
+                
+                if (Array.isArray(objetives) && objetives.length) {
+                    
+                    //objetives.forEach(element => console.log(element.weight));
 
-                /* if (this.input.objetives.length === 0) { weight = 100}
-                if (this.input.objetives.length === 1) { 
-                    this.input.objetives[0].weight = 50
-                    weight = 50
-                }
-                if (this.input.objetives.length === 2) { 
-                    this.input.objetives[0].weight = 33.3
-                    this.input.objetives[1].weight = 33.3
-                    weight = 33.3
-                }
-                if (this.input.objetives.length === 3) { 
-                    this.input.objetives[0].weight = 25
-                    this.input.objetives[1].weight = 25
-                    this.input.objetives[2].weight = 25
-                    weight = 25
-                }
-                if (this.input.objetives.length === 4) { 
-                    this.input.objetives[0].weight = 20
-                    this.input.objetives[1].weight = 20
-                    this.input.objetives[2].weight = 20
-                    this.input.objetives[3].weight = 20
-                    weight = 20
-                } */
-                 
-                let obj = {
-                    type: this.type,
-                    measure: this.measure,
-                    weight 
-                }     
+                    objetives.map(element => {sum += element[2]})
 
-                this.input.objetives.push(obj)
+                    x = parseInt(sum) + parseInt(this.weight)
+
+                    if(x <= 100 && sum < 100) {
+                        objetives.push([this.type, this.measure, this.weight])
+                        
+                    }else{
+                        this.message.text = "Ya no se puede agregar mas objetivos"
+                        this.message.color = "warning"
+                        this.showAlert()
+                        console.log("Ya no se puede agregar mas objetivos")
+                    }          
+                            
+                }else{                   
+                    objetives.push([this.type, this.measure, this.weight])           
+                    this.weight = 100 - this.weight
+                }                                            
             },
 
             removeObjetive(){
+                let sum = 0
+                this.message.show = false
+
                 this.input.objetives.pop()
+                this.input.objetives.map(element => {sum += element.weight})
+                this.weight = 100 - sum
+
+            },
+
+            countDownChanged(dismissCountDown) {
+                this.message.dismissCountDown = dismissCountDown
+            },
+
+            showAlert() {
+                this.message.dismissCountDown = this.message.dismissSecs
             }
         }
     }
